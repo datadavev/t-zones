@@ -111,10 +111,10 @@ export class TZones extends LitElement {
   generateMatrix() {
     this.dmatrix = [];
     for (const z of this.zones.split(",")) {
-        let dt_row = this.tnow.setZone(z);
-        let row = [z, dt_row ];
+        const dt_row = this.tnow.setZone(z);
+        const row = [z, dt_row ];
         for (let h=1; h<24; h++) {
-            let dur = Duration.fromObject({hours: h});
+            const dur = Duration.fromObject({hours: h});
             row.push(dt_row.plus(dur));
         }
         this.dmatrix.push(row);
@@ -157,12 +157,12 @@ export class TZones extends LitElement {
 
   showTime(e) {
     const col = parseInt(e.target.getAttribute("x-col"), 10);
-    /*if (this.c_col === col) {
+    /* if (this.c_col === col) {
       this.offset += 10;
       if (this.offset > 50) {
         this.offset = 0;
       }
-    }*/
+    } */
     this.times = this.columnTimes(col);
     const _this = this;
     this.c_col = col;
