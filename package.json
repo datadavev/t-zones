@@ -3,7 +3,7 @@
   "description": "Time in zones matrix Webcomponent following open-wc recommendations",
   "license": "MIT",
   "author": "datadavev",
-  "version": "0.0.1",
+  "version": "0.0.4",
   "main": "index.js",
   "module": "index.js",
   "scripts": {
@@ -18,7 +18,6 @@
   },
   "dependencies": {
     "@github/clipboard-copy-element": "^1.1.2",
-    "@vaadin/vaadin-date-picker": "^21.0.2",
     "lit": "^2.0.0",
     "luxon": "^2.0.2",
     "web-dialog": "^0.0.11"
@@ -28,7 +27,7 @@
     "@open-wc/eslint-config": "^4.3.0",
     "@open-wc/testing": "next",
     "@web/dev-server": "^0.1.23",
-    "@web/dev-server-storybook": "next",
+    "@web/dev-server-storybook": "^0.0.2",
     "@web/test-runner": "^0.13.17",
     "eslint": "^7.32.0",
     "eslint-config-prettier": "^8.3.0",

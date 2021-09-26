@@ -7,6 +7,33 @@
       background: #fafafa;
     }
   </style>
+    <script type="application/ld+json">
+      {
+          "@context":"https://schema.org/",
+          "@graph":[
+            {
+              "@type":"WebPage",
+              "@id":"index.html",
+              "url": {
+                "@id": "https://github.com/datadavev/t-zones"
+              },
+              "author": {
+                "@type": "Person",
+                "@id": "https://orcid.org/0000-0002-6513-4996",
+                "name": "Dave Vieglais"    
+              },
+              "keywords": ["time", "time-zones", "meeting"],
+              "description":"Demo page for t-zones webcomponent, showing time in a selection of time zones.",
+              "dateModified":"2021-09-26",
+              "license":{"@id":"https://spdx.org/licenses/MIT.html"},
+              relatedLink:[
+                "https://www.npmjs.com/package/t-zones",
+                "https://unpkg.com/t-zones"
+              ]
+            }
+          ]
+      }
+      </script>
   <script type="module" src="https://unpkg.com/gh-corner-wc/gh-corner.js?module">
   </script>
   <script type="module" src="https://unpkg.com/t-zones/t-zones.js?module">
