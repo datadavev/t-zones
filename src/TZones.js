@@ -185,8 +185,8 @@ export class TZones extends LitElement {
         if (hv_f >= 6 && hv_f <= 18) {
           hv_class = 'day';
         }
-        // eslint-disable-next-line lit-a11y/click-events-have-key-events
         row.push(
+          // eslint-disable-next-line lit-a11y/click-events-have-key-events
           html`<td
             class="${hv_class}"
             @click="${this.showTime}"
