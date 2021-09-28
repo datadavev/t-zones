@@ -2,43 +2,31 @@ import { html } from 'lit';
 import '../t-zones.js';
 
 export default {
-  title: 'TZones',
+  title: 't-zones',
+  zones: 'UTC,America/New_York,Pacific/Tahiti',
   component: 't-zones',
   argTypes: {
-    title: { control: 'text' },
-    counter: { control: 'number' },
+    zones: { control: 'text' },
     textColor: { control: 'color' },
   },
 };
 
-function Template({ title = 'Hello world', counter = 5, textColor, slot }) {
+// eslint-disable-next-line no-unused-vars
+function Template({
+  title = 't-zones',
+  zones = 'UTC,America/New_York,Pacific/Tahiti',
+  textColor,
+}) {
   return html`
-    <t-zones
-      style="--t-zones-text-color: ${textColor || 'black'}"
-      .title=${title}
-      .counter=${counter}
-    >
-      ${slot}
+    <t-zones style="--t-zones-color: ${textColor || 'black'}" .zones=${zones}>
     </t-zones>
   `;
 }
 
 export const Regular = Template.bind({});
 
-export const CustomTitle = Template.bind({});
-CustomTitle.args = {
-  title: 'My title',
-};
-
-export const CustomCounter = Template.bind({});
-CustomCounter.args = {
-  counter: 123456,
-};
-
-export const SlottedContent = Template.bind({});
-SlottedContent.args = {
-  slot: html`<p>Slotted content</p>`,
-};
-SlottedContent.argTypes = {
-  slot: { table: { disable: true } },
+export const CustomZones = Template.bind({});
+CustomZones.args = {
+  title: 't-zones',
+  zones: 'UTC,America/New_York,Pacific/Tahiti',
 };

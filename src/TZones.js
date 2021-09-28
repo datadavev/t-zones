@@ -84,7 +84,8 @@ export class TZones extends LitElement {
       zones: { type: String },
       czone: { type: String },
       times: { type: String },
-      tnow: {},
+      tnow: { state: true },
+      _zoneList: { state: true },
     };
   }
 
