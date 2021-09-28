@@ -93,16 +93,28 @@ export class TZones extends LitElement {
     this.tnow = DateTime.utc();
     this.dmatrix = null;
     this.zones = DEFAULT_ZONES;
+    this._zoneList = this.zones.split(',');
     this.czone = DateTime.now().zoneName;
     this.times = '';
     this.offset = 0;
     this.c_col = 0;
+  }
+
+  connectedCallback() {
+    super.connectedCallback();
     this.generateMatrix();
+  }
+
+  updated(changed) {
+    if (changed.has('zones')) {
+      this._zoneList = this.zones.split(',');
+      this.generateMatrix();
+    }
   }
 
   generateMatrix() {
     this.dmatrix = [];
-    for (const z of this.zones.split(',')) {
+    for (const z of this._zoneList) {
       const dt_row = this.tnow.setZone(z);
       const row = [z, dt_row];
       for (let h = 1; h < 24; h += 1) {
