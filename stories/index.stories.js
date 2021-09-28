@@ -11,8 +11,9 @@ export default {
   },
 };
 
-// eslint-disable-next-line no-unused-vars
+// title seems to be required for stories...
 function Template({
+  // eslint-disable-next-line no-unused-vars
   title = 't-zones',
   zones = 'UTC,America/New_York,Pacific/Tahiti',
   textColor,
