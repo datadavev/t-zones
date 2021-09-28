@@ -1,6 +1,14 @@
 # \<t-zones>
 
+Provides a view of times in different time zones for 24 hours on a date of choice.
+
 This webcomponent follows the [open-wc](https://github.com/open-wc/open-wc) recommendation.
+
+![Screenshot](docs/20210927_screenshot.png)
+
+Demo at https://datadavev.github.io/t-zones
+
+Source at https://github.com/datadavev/t-zones
 
 ## Installation
 
@@ -17,6 +25,16 @@ npm i t-zones
 
 <t-zones></t-zones>
 ```
+
+or using a CDN:
+
+```html
+<script type="module" src="https://unpkg.com/t-zones/t-zones.js?module">
+</script>
+
+<t-zones></t-zones>
+```
+
 
 ## Linting and formatting
 
