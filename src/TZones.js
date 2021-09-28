@@ -97,15 +97,7 @@ export class TZones extends LitElement {
     this.times = '';
     this.offset = 0;
     this.c_col = 0;
-  }
-
-  connectedCallback() {
-    super.connectedCallback();
     this.generateMatrix();
-  }
-
-  disconnectedCallback() {
-    super.disconnectedCallback();
   }
 
   generateMatrix() {
