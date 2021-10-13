@@ -47,9 +47,21 @@
   <section>
     <p>Default display with no options:</p>
     <t-zones></t-zones>
-
+    
+    <p>To produce the above:</p>
+    <pre>
+      &lt;script type=&quot;module&quot; src=&quot;https://unpkg.com/t-zones/t-zones.js?module&quot;&gt;&lt;/script&gt;
+      ...
+      &lt;t-zones&gt;&lt;/t-zones&gt;
+    </pre>
+    
     <p>Or with specific timezones selected:</p>
       <t-zones zones="America/New_York,America/Phoenix,US/Pacific,Pacific/Tahiti,Australia/Perth,UTC"></t-zones>
+    <p>To produce the above:</p>
+    <pre>
+      &lt;t-zones zones=&quot;America/New_York,America/Phoenix,US/Pacific,Pacific/Tahiti,Australia/Perth,UTC&quot;&gt;&lt;/t-zones&gt;
+    </pre>
+
   </section>
 
 </body>
