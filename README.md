@@ -4,7 +4,7 @@ Provides a view of times in different time zones for 24 hours on a date of choic
 
 This webcomponent follows the [open-wc](https://github.com/open-wc/open-wc) recommendation.
 
-![Screenshot](docs/20210927_screenshot.png)
+![Screenshot](https://raw.githubusercontent.com/datadavev/t-zones/main/docs/20210927_screenshot.png)
 
 Demo at https://datadavev.github.io/t-zones
 
