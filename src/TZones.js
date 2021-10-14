@@ -36,6 +36,7 @@ export class TZones extends LitElement {
         font-size: var(--t-zones-font-size, 14px);
         font-family: var(--t-zones-font-family, monospace);
         font-weight: var(--t-zones-font-weight, normal);
+        overflow-x: scroll;
       }
 
       table {

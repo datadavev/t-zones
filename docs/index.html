@@ -2,6 +2,7 @@
 <html lang="en-GB">
 <head>
   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>t-zones</title>
   <style>
     body {
@@ -43,6 +44,7 @@
 <body>
   <header>
     <gh-corner user="datadavev" repo="t-zones"></gh-corner>
+    <p><code>t-zones</code> webcomponent</p>
   </header>
   <section>
     <p>Default display with no options:</p>
@@ -50,16 +52,16 @@
     
     <p>To produce the above:</p>
     <pre>
-      &lt;script type=&quot;module&quot; src=&quot;https://unpkg.com/t-zones/t-zones.js?module&quot;&gt;&lt;/script&gt;
-      ...
-      &lt;t-zones&gt;&lt;/t-zones&gt;
+&lt;script type=&quot;module&quot; src=&quot;https://unpkg.com/t-zones/t-zones.js?module&quot;&gt;&lt;/script&gt;
+...
+&lt;t-zones&gt;&lt;/t-zones&gt;
     </pre>
     
     <p>Or with specific timezones selected:</p>
       <t-zones zones="America/New_York,America/Phoenix,US/Pacific,Pacific/Tahiti,Australia/Perth,UTC"></t-zones>
     <p>To produce the above:</p>
     <pre>
-      &lt;t-zones zones=&quot;America/New_York,America/Phoenix,US/Pacific,Pacific/Tahiti,Australia/Perth,UTC&quot;&gt;&lt;/t-zones&gt;
+&lt;t-zones zones=&quot;America/New_York,America/Phoenix,US/Pacific,Pacific/Tahiti,Australia/Perth,UTC&quot;&gt;&lt;/t-zones&gt;
     </pre>
 
   </section>
