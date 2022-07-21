@@ -116,9 +116,10 @@ export class SimpleModal extends LitElement {
   }
 
   async handleKey(e) {
-    console.log(e.keyCode);
     if (e.keyCode === 27) {
-      this.toggleModal();
+      if (this.state) {
+        this.toggleModal();
+      }
       return;
     }
     if (e.keyCode === 13) {
