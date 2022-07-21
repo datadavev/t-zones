@@ -3,7 +3,7 @@
   "description": "Time in zones matrix Webcomponent following open-wc recommendations",
   "license": "MIT",
   "author": "datadavev",
-  "version": "0.0.8",
+  "version": "0.1.0",
   "main": "index.js",
   "module": "index.js",
   "scripts": {
