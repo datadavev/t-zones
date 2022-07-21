@@ -73,6 +73,13 @@ export class SimpleModal extends LitElement {
         transform: scale(1);
         transition: visibility 0s linear 0s, opacity 0.25s 0s, transform 0.25s;
       }
+
+      .copy_button {
+        padding: 0.4rem;
+        border-radius: 4px;
+        border: 1px solid black;
+        display: inline-block;
+      }
     `;
   }
 
@@ -95,6 +102,19 @@ export class SimpleModal extends LitElement {
     ele.classList.toggle('show-modal');
   }
 
+  async handleCopy() {
+    const _copy_node = this.renderRoot.getElementById('copy_node');
+    await copyNode(_copy_node);
+    const notice = this.renderRoot.querySelector('.notice');
+    const label = this.renderRoot.querySelector('.label');
+    label.hidden = true;
+    notice.hidden = false;
+    setTimeout(() => {
+      notice.hidden = true;
+      label.hidden = false;
+    }, 1000);
+  }
+
   async handleKey(e) {
     console.log(e.keyCode);
     if (e.keyCode === 27) {
@@ -102,16 +122,7 @@ export class SimpleModal extends LitElement {
       return;
     }
     if (e.keyCode === 13) {
-      const _copy_node = this.renderRoot.getElementById('copy_node');
-      await copyNode(_copy_node);
-      const notice = this.renderRoot.querySelector('.notice');
-      const label = this.renderRoot.querySelector('.label');
-      label.hidden = true;
-      notice.hidden = false;
-      setTimeout(() => {
-        notice.hidden = true;
-        label.hidden = false;
-      }, 1000);
+      this.handleCopy();
     }
   }
 
@@ -134,12 +145,28 @@ export class SimpleModal extends LitElement {
   // eslint-disable no-unused-vars
   render() {
     return html`
-      <div id="modal_id" class="modal" @keypress="${this.handleKey}">
+      <div id="modal_id" class="modal">
         <div class="modal-content">
-          <span class="close-button" onClick="${this.toggleModal}" role="button"
-            >X</span
+          <button
+            id="close_button"
+            class="close-button"
+            @click="${this.toggleModal}"
+            @keyup="${this.toggleModal}"
           >
+            X
+          </button>
           <div>${this.body}</div>
+          <div
+            id="copy_button"
+            class="copy_button"
+            @click="${this.handleCopy}"
+            @keyup="${this.handleCopy}"
+            role="button"
+            tabindex="0"
+          >
+            <span class="label">Copy</span
+            ><span class="notice" hidden>Copied!</span>
+          </div>
         </div>
       </div>
     `;
