@@ -1,5 +1,29 @@
+/**
+ * This is a draft implementation for a simple modal dialog.
+ *
+ * Event flow between host and UI needs to be cleaned up - the roles
+ * are not clear right now, but it works ok for this use case.
+ */
+
 /* eslint-disable camelcase */
 import { html, css, LitElement } from 'lit';
+
+async function copyNode(node) {
+  if ('clipboard' in navigator) {
+    return navigator.clipboard.writeText(node.textContent || '');
+  }
+  const selection = getSelection();
+  if (selection == null) {
+    return Promise.reject(new Error());
+  }
+  selection.removeAllRanges();
+  const range = document.createRange();
+  range.selectNodeContents(node);
+  selection.addRange(range);
+  document.execCommand('copy');
+  selection.removeAllRanges();
+  return Promise.resolve();
+}
 
 export class SimpleModal extends LitElement {
   static get styles() {
@@ -71,38 +95,48 @@ export class SimpleModal extends LitElement {
     ele.classList.toggle('show-modal');
   }
 
-  static handleKey(e, _this) {
+  async handleKey(e) {
     console.log(e.keyCode);
     if (e.keyCode === 27) {
-      _this.toggleModal();
+      this.toggleModal();
+      return;
+    }
+    if (e.keyCode === 13) {
+      const _copy_node = this.renderRoot.getElementById('copy_node');
+      await copyNode(_copy_node);
+      const notice = this.renderRoot.querySelector('.notice');
+      const label = this.renderRoot.querySelector('.label');
+      label.hidden = true;
+      notice.hidden = false;
+      setTimeout(() => {
+        notice.hidden = true;
+        label.hidden = false;
+      }, 1000);
     }
   }
 
-  /*
-    connectedCallback() {
-        super.connectedCallback();
-        document.addEventListener('keydown', (e) => {
-            this.handleKey(e, this);
-        });
-    }
+  connectedCallback() {
+    super.connectedCallback();
+    const _this = this;
+    document.addEventListener('keydown', e => {
+      _this.handleKey(e);
+    });
+  }
 
-    disconnectedCallback() {
-        super.disconnectedCallback();
-        document.removeEventListener('keydown', (e) => {
-            this.handleKey(e, this);
-        });
-    }
-    */
+  disconnectedCallback() {
+    super.disconnectedCallback();
+    const _this = this;
+    document.removeEventListener('keydown', e => {
+      _this.handleKey(e);
+    });
+  }
 
   // eslint-disable no-unused-vars
   render() {
     return html`
-      <div id="modal_id" class="modal">
+      <div id="modal_id" class="modal" @keypress="${this.handleKey}">
         <div class="modal-content">
-          <span
-            class="close-button"
-            @click="${this.toggleModal}"
-            @keypress="${this.handleKey}"
+          <span class="close-button" onClick="${this.toggleModal}" role="button"
             >X</span
           >
           <div>${this.body}</div>
