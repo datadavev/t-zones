@@ -1,8 +1,9 @@
 /* eslint-disable camelcase */
-import { html, css, LitElement, render } from 'lit';
+import { html, css, LitElement } from 'lit';
 import { DateTime, Duration } from 'luxon';
-import { openDialog } from 'web-dialog';
-import '@github/clipboard-copy-element';
+
+// eslint-disable-next-line no-unused-vars
+import { SimpleModal } from './SimpleModal.js';
 
 const DEFAULT_ZONES = [
   'UTC',
@@ -92,7 +93,8 @@ export class TZones extends LitElement {
 
   constructor() {
     super();
-    this.tnow = DateTime.utc();
+    const _tnow = DateTime.now();
+    this.tnow = DateTime.local(_tnow.year, _tnow.month, _tnow.day, 0, 1);
     this.dmatrix = null;
     this.zones = DEFAULT_ZONES;
     this._zoneList = this.zones.split(',');
@@ -127,11 +129,6 @@ export class TZones extends LitElement {
     }
   }
 
-  // eslint-disable-next-line class-methods-use-this
-  _copied(e) {
-    e.target.innerText = 'Copied!';
-  }
-
   columnTimes(col) {
     const res = [];
     const _ct = this.dmatrix[0][col].set({ minute: this.offset });
@@ -139,45 +136,20 @@ export class TZones extends LitElement {
       const _t = _ct.setZone(rw[col].zone);
       res.push(_t.toFormat('yyyy-LLL-dd HH:mm z'));
     }
-    return html`
-      <style>
-        clipboard-copy.button {
-          padding: 0.4rem;
-          border-radius: 4px;
-          border: 1px solid black;
-          display: inline-block;
-        }      
-        web-dialog {
-            --dialog-container-padding: 0;
-            --dialog-border-radius: 0;
-            --dialog-max-width: 500px;
-            --dialog-animation-duration: 0;
-          }                      
-      </style>
-      <pre id="times">${res.join('\n')}
-      </pre>
-      <clipboard-copy style="width:4rem; padding:0.4rem; border-radius:4px; border: 1px solid red; display: inline-block" for="times" class="button" @clipboard-copy="${
-        this._copied
-      }">Copy</clipboard-copy>
-    </div>`;
+    return html` <pre id="copy_node">
+${res.join('\n')}
+      </pre
+    >`;
   }
 
   showTime(e) {
     const col = parseInt(e.target.getAttribute('x-col'), 10);
-    /* if (this.c_col === col) {
-      this.offset += 10;
-      if (this.offset > 50) {
-        this.offset = 0;
-      }
-    } */
     this.times = this.columnTimes(col);
     const _this = this;
     this.c_col = col;
-    openDialog({
-      $content: $dialog => {
-        render(_this.times, $dialog);
-      },
-    });
+    const _target = this.renderRoot.getElementById('dlg1');
+    _target.body = _this.times;
+    _target.toggleModal();
   }
 
   render() {
@@ -226,7 +198,8 @@ export class TZones extends LitElement {
               ${rm}
               </tbody>
           </table>
-      `;
+          <simple-modal id="dlg1"></simple-modal>
+    `;
   }
 
   firstUpdated() {
