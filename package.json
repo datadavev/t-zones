@@ -3,7 +3,7 @@
   "description": "Time in zones matrix Webcomponent following open-wc recommendations",
   "license": "MIT",
   "author": "datadavev",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "main": "index.js",
   "module": "index.js",
   "scripts": {
@@ -17,8 +17,8 @@
     "storybook:build": "npm run analyze -- --exclude dist && build-storybook"
   },
   "dependencies": {
-    "lit": "^2.0.0",
-    "luxon": "^2.0.2"
+    "lit": "^2.6",
+    "luxon": "^3.0"
   },
   "devDependencies": {
     "@custom-elements-manifest/analyzer": "^0.4.17",

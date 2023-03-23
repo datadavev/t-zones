@@ -1,6 +1,7 @@
 /* eslint-disable camelcase */
-import { html, css, LitElement } from 'lit';
-import { DateTime, Duration } from 'luxon';
+/* eslint import/no-unresolved: [2, { ignore: ['https.*'] }] */
+import { html, css, LitElement } from 'https://esm.run/lit-element';
+import { DateTime, Duration } from 'https://esm.run/luxon';
 
 // eslint-disable-next-line no-unused-vars
 import { SimpleModal } from './SimpleModal.js';
