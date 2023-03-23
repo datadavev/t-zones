@@ -1,6 +1,6 @@
 /* eslint-disable camelcase */
 /* eslint import/no-unresolved: [2, { ignore: ['https.*'] }] */
-import { html, css, LitElement } from 'https://esm.run/lit-element';
+import { html, css, LitElement } from 'https://esm.run/lit';
 import { DateTime, Duration } from 'https://esm.run/luxon';
 
 // eslint-disable-next-line no-unused-vars
