@@ -32,8 +32,8 @@ export class TZones extends LitElement {
   static get styles() {
     return css`
       :host {
-        display: block;
-        padding: 16px;
+        display: table;
+        padding: var(--t-zones-padding, 8px);
         color: var(--t-zones-color, black);
         font-size: var(--t-zones-font-size, 14px);
         font-family: var(--t-zones-font-family, monospace);
